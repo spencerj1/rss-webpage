@@ -4,7 +4,7 @@ var FeedParser = require('feedparser')
 
 module.exports = {
 	getfeed: function (url, callback){
-		var req = request('http://www.bitpipe.com/data/bpXchange?b=ka_bp_manageit&d=31&f=rss&u=rss')
+		var req = request(url)
   		var feedparser = new FeedParser([options]);
 
 		req.on('error', function (error) {
