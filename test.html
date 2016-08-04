@@ -139,9 +139,8 @@ $.ajax({
 });  
 
 $.ajax({
-	url: 'http://www.bitpipe.com/data/bpXchange?b=ka_bp_manageit&d=31&f=rss&u=rss',
+	url: '/rss',
 	type: 'GET',
-	crossDomain: true,
  	success: function(data) {
     	$(data).find("item").each(function () {
         	var el = $(this);
