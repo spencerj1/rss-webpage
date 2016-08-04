@@ -22,7 +22,6 @@ module.exports = {
 		  callback("error");
 		});
 
-		var item_array = [];
 		feedparser.on('readable', function() {
 		  // This is where the action is!
 		  var stream = this
