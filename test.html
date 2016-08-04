@@ -117,8 +117,6 @@
 </div>
 </div><script src="http://cdn.ttgtmedia.com/rms/ux/responsive/js/responsive-ui.min.js?v=6.53"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
-
-<script id="article-template" src="/article-template" type="text/html">
 </script>
 <script>
 
@@ -130,7 +128,7 @@ var view = {
 }
 
 $.ajax({
-    url: '/article-template', //ex. js/templates/mytemplate.handlebars
+    url: '/articletemplate', //ex. js/templates/mytemplate.handlebars
     cache: true,
     success: function(data) {
       	var source    = data;
