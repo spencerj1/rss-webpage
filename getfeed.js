@@ -29,7 +29,7 @@ module.exports = {
 		  var item_array = [];
 		  while (item = stream.read()) {
 		    console.log(item);
-		    item_array.push(item);
+		    item_array.push([item.title, item.description]);
 		  }
 		  callback(item_array);
 		});
