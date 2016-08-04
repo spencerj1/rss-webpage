@@ -1,5 +1,5 @@
 var FeedParser = require('feedparser')
-  , request = require('request');
+var request = require('request');
 
 
 module.exports = {
@@ -32,5 +32,5 @@ module.exports = {
 		  }
 		  callback();
 		});
-    };
+    }
 }
