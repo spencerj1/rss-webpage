@@ -22,7 +22,7 @@
 		<article id="content-columns" class="content-columns">
 <div>
 <header class="homepage-header">
-	<h1 class="homepage-title searchitchannel"><span class="logo-search">Search</span><span class="logo-1">IT</span><span class="logo-2">Channel</span></h1>
+	<h1 class="homepage-title searchitchannel"><span class="logo-search">Example</span><span class="logo-1">RSS</span><span class="logo-2">Feed</span></h1>
 </header>
 </div>
 <div id="content-left" class="content-left">
@@ -37,7 +37,7 @@
 <div id="content-center" class="content-center">
 <div><div>
 <section class="homepage-section trending-topics-home" id="trending-topics">
-		<h2>Trending Topics</h2>
+		<h2 id="topic-title">Trending Topics</h2>
 			<ul class="trending-topics-items tt-list-1" id="article-list">
 				<!--Inject Template Here-->
 			</ul>
@@ -78,10 +78,9 @@ $.ajax({
         	var html = template(view);
         	$('#article-list').append(html);
     	});
+    	$('#topic-title').html(data[0].feed.name);
 	}
 });
-
-//document.getElementById('article-list').innerHTML += output;
 
 </script>
 </body>
