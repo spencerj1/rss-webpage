@@ -116,5 +116,43 @@
 </footer>
 </div>
 </div><script src="http://cdn.ttgtmedia.com/rms/ux/responsive/js/responsive-ui.min.js?v=6.53"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
+
+<script id="article-template" src="/article-template" type="text/html">
+</script>
+<script>
+
+var view = {
+	title: "Test1",
+	description: "Test2",
+	link: "Test3",
+	date: "Test4"
+}
+
+$.ajax({
+    url: '/article-template', //ex. js/templates/mytemplate.handlebars
+    cache: true,
+    success: function(data) {
+      	var source    = data;
+        var template  = Handlebars.compile(source);
+        var html = template(view);
+        $('#article-list').append(html);
+        }               
+});  
+
+$.get('http://www.bitpipe.com/data/bpXchange?b=ka_bp_manageit&d=31&f=rss&u=rss', function (data) {
+    $(data).find("item").each(function () {
+        var el = $(this);
+
+        console.log("------------------------");
+        console.log("title      : " + el.find("title").text());
+        console.log("author     : " + el.find("author").text());
+        console.log("description: " + el.find("description").text());
+    });
+});
+
+//document.getElementById('article-list').innerHTML += output;
+
+</script>
 </body>
 </html>

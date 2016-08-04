@@ -10,8 +10,8 @@ app.get('/', function (req, res) {
 res.status(200).sendFile('./test.html', { root: __dirname })
 });
 
-app.get('/css/business-casual.css', function (req, res) { 
-res.status(200).sendFile('./css/business-casual.css', { root: __dirname })
+app.get('/article-template', function (req, res) { 
+res.status(200).sendFile('./article-template.html', { root: __dirname })
 });
 
 app.use(function (err, req, res, next) {
