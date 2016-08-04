@@ -32,9 +32,8 @@ module.exports = {
 		  	if (item = stream.read()){
 		  		console.log(item);
 		  		item_array.push(item);
-		  		reader();
-		  	}else{
 		  		callback(item_array);
+		  	}else{
 		  	}
 		  }
 		});
