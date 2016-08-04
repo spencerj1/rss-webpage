@@ -34,6 +34,7 @@ module.exports = {
 		    console.log(item);
 		    item_array.push([item.title, item.description]);
 		  }
+		  callback(item_array);
 		});
     }
 }
