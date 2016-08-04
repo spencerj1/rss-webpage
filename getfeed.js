@@ -26,11 +26,12 @@ module.exports = {
 		  var stream = this
 		  var meta = this.meta // **NOTE** the "meta" is always available in the context of the feedparser instance
 		  var item;
-
+		  var item_array = [];
 		  while (item = stream.read()) {
 		    console.log(item);
+		    item_array.push(item);
 		  }
-		  callback();
+		  callback(item_array);
 		});
     }
 }

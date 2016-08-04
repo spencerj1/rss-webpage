@@ -16,10 +16,9 @@ res.status(200).sendFile('./articletemplate.html', { root: __dirname })
 });
 
 app.get('/rss', function (req, res) { 
-	rssfeed.getfeed('http://www.bitpipe.com/data/bpXchange?b=ka_bp_manageit&d=31&f=rss&u=rss', function(){
-
+	rssfeed.getfeed('http://www.bitpipe.com/data/bpXchange?b=ka_bp_manageit&d=31&f=rss&u=rss', function(data){
+		res.status(200).json(data);
 	});
-	res.status(200).json("sure");
 });
 
 app.use(function (err, req, res, next) {

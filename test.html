@@ -142,9 +142,9 @@ $.ajax({
 	url: '/rss',
 	type: 'GET',
  	success: function(data) {
+ 		console.log(data);
     	$(data).find("item").each(function () {
         	var el = $(this);
-
         	console.log("------------------------");
         	console.log("title      : " + el.find("title").text());
         	console.log("author     : " + el.find("author").text());
