@@ -73,7 +73,7 @@ $.ajax({
 				title: value.title,
 				description: value.content,
 				link: value.link,
-				date: value.published
+				date: new Date(value.published.replace(/-/g,"/"));
 			}
         	var html = template(view);
         	$('#article-list').append(html);
