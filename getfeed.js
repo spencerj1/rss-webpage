@@ -1,4 +1,4 @@
-var FeedParser = require('feed-read');
+var feed = require('feed-read');
 var request = require('request');
 
 
