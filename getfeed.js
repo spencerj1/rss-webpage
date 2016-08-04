@@ -5,7 +5,7 @@ var request = require('request');
 module.exports = {
 	getfeed: function (url, callback){
 		var req = request(url)
-  		var feedparser = new FeedParser([options]);
+  		var feedparser = new FeedParser();
 
 		req.on('error', function (error) {
   		// handle any request errors
