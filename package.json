@@ -1,0 +1,15 @@
+{
+  "name": "medideviserver",
+  "version": "1.0.0",
+  "description": "lab1",
+  "main": "index.js",
+  "scripts": {
+    "test": "Hello World"
+  },
+  "author": "James Spencer",
+  "license": "ISC",
+  "dependencies":{
+  	"express": "^4.x.x",
+  	"body-parser": "^1.x.x"
+  }
+}
