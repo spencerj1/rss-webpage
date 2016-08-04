@@ -21,6 +21,8 @@ module.exports = {
 		feedparser.on('error', function(error) {
 		  callback("error");
 		});
+
+		var item_array = [];
 		feedparser.on('readable', function() {
 		  // This is where the action is!
 		  var stream = this
@@ -31,7 +33,7 @@ module.exports = {
 		    console.log(item);
 		    item_array.push([item.title, item.description]);
 		  }
-		  callback(item_array);
 		});
+		callback(item_array);
     }
 }
