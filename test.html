@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="no-js gt-ie8" dir="ltr" lang="en"><!--<![endif]-->
+<html class="no-js gt-ie8" dir="ltr" lang="en">
 <head>
 	<meta charset="utf-8" >
 			<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" >
@@ -12,62 +12,74 @@
 			<link rel="stylesheet" href="http://cdn.ttgtmedia.com/rms/ux/responsive/css/main.css?v=6.53">
 
 </head>
+
 <body id="home">
 	<div id="site-container" class="site-container">
 	</div>
-<div class="header-gradient">
-	<img src="http://cdn.ttgtmedia.com/rms/ux/responsive/img/temp/home_gradient_desktop.png" />
-</div>
+	<div class="header-gradient">
+		<img src="http://cdn.ttgtmedia.com/rms/ux/responsive/img/temp/home_gradient_desktop.png" />
+	</div>
 <div id="main-content" class="main-content">
-		<article id="content-columns" class="content-columns">
-<div>
-<header class="homepage-header">
-	<h1 class="homepage-title searchitchannel"><span class="logo-search">Example</span><span class="logo-1">RSS</span><span class="logo-2">Feed</span></h1>
-</header>
+	<article id="content-columns" class="content-columns">
+	<div>
+	<header class="homepage-header">
+		<h1 class="homepage-title searchitchannel"><span class="logo-search">Example</span><span class="logo-1">RSS</span><span class="logo-2">Feed</span></h1>
+	</header>
 </div>
 <div id="content-left" class="content-left">
-		<div><div class="locking-full-bar">
-				<div class="locking-left-bar">
-				</div>
-				<aside class="resources-bar desktop-resources-bar" id="resources-bar">
-				</aside>
+		<div class="locking-full-bar">
+			<div class="locking-left-bar">
 			</div>
+			<aside class="resources-bar desktop-resources-bar" id="resources-bar">
+			</aside>
 		</div>
 </div>
 <div id="content-center" class="content-center">
-<div><div>
-<section class="homepage-section trending-topics-home" id="trending-topics">
-		<h2 id="topic-title">Trending Topics</h2>
-			<ul class="trending-topics-items tt-list-1" id="article-list">
+	<div><div>
+		<section class="homepage-section trending-topics-home" id="trending-topics">
+				<h2 id="topic-title">Trending Topics</h2>
+				<ul class="trending-topics-items tt-list-1" id="article-list">
 				<!--Inject Template Here-->
-			</ul>
+				</ul>
 		</section>
 	</div>
 </div>
 <div>
-<footer id="page-footer">
-</footer>
+	<footer id="page-footer">
+	</footer>
 </div>
-</div><script src="http://cdn.ttgtmedia.com/rms/ux/responsive/js/responsive-ui.min.js?v=6.53"></script>
+</div>
+
+<script src="http://cdn.ttgtmedia.com/rms/ux/responsive/js/responsive-ui.min.js?v=6.53"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
 </script>
 <script>
 
+var feedarray = [
+	"http://searchstorage.techtarget.com/rss/News-and-trends-in-the-storage-industry.xml",
+	""
+]
+
+//Retrieve the html template to be used for each Article object
 var template;
 $.ajax({
-    url: '/articletemplate', //ex. js/templates/mytemplate.handlebars
+    url: '/articletemplate',
     cache: true,
     success: function(data) {
-      	var source    = data;
-        template  = Handlebars.compile(source);
+      	var source = data;
+        template = Handlebars.compile(source); //Using Handlebars as the templating engine
         }               
 });  
 
+//Retreive RSS feed data from server in json format.
+
 $.ajax({
 	url: '/rss',
-	type: 'GET',
+	type: 'POST',
+	data: feedarray,
  	success: function(data) {
- 		console.log(data);
+ 		//console.log(data);
+ 		$('#topic-title').html(data[0].feed.name); //Change titlebar to name of RSS feed
     	$(data).each(function (index, value) {
     		var view = {
 				title: value.title,
@@ -75,10 +87,9 @@ $.ajax({
 				link: value.link,
 				date: value.published
 			}
-        	var html = template(view);
-        	$('#article-list').append(html);
+        	var html = template(view); //Replace each empty field in html template with parsed RSS data
+        	$('#article-list').append(html); //Inject finalized template into article list
     	});
-    	$('#topic-title').html(data[0].feed.name);
 	}
 });
 

@@ -1,8 +1,8 @@
 {
-  "name": "medideviserver",
+  "name": "techtarget-interview-project",
   "version": "1.0.0",
-  "description": "lab1",
-  "main": "index.js",
+  "description": "rss feed example",
+  "main": "app.js",
   "scripts": {
     "test": "Hello World"
   },

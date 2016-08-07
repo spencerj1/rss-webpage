@@ -1,6 +1,4 @@
 var feed = require('feed-read');
-var request = require('request');
-
 
 module.exports = {
 	getfeed: function (url, callback){
