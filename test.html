@@ -55,12 +55,11 @@
 </script>
 <script>
 
-var dataPacket = { rssfeeds:[
+var feedarray = [
 	"http://searchstorage.techtarget.com/rss/News-and-trends-in-the-storage-industry.xml",
 	"http://searchnetworking.techtarget.com/rss/News-on-networking-mobility-and-voice.xml",
-	"http://searchsecurity.techtarget.com/rss/Security-Wire-Daily-News.xml"
-	]
-}
+	"http://searchsecurity.techtarget.com/rss/Security-Wire-Daily-News.xml",
+]
 
 //Retrieve the html template to be used for each Article object
 var template;
@@ -74,24 +73,27 @@ $.ajax({
 });  
 
 //Retreive RSS feed data from server in json format.
-$.ajax({
-	url: '/rss',
-	type: 'POST',
-	data: dataPacket,
- 	success: function(data) {
- 		//console.log(data);
- 		$('#topic-title').html(data[0].feed.name); //Change titlebar to name of RSS feed
-    	$(data).each(function (index, value) {
-    		var view = {
-				title: value.title,
-				description: value.content,
-				link: value.link,
-				date: value.published
-			}
-        	var html = template(view); //Replace each empty field in html template with parsed RSS data
-        	$('#article-list').append(html); //Inject finalized template into article list
-    	});
-	}
+$(feedarray).each(function(index, element){
+	var body = {url: element};
+	$.ajax({
+		url: '/rss',
+		type: 'POST',
+		data: body,
+	 	success: function(data) {
+	 		//console.log(data);
+	 		$('#topic-title').html(data[0].feed.name); //Change titlebar to name of RSS feed
+	    	$(data).each(function (index, value) {
+	    		var view = {
+					title: value.title,
+					description: value.content,
+					link: value.link,
+					date: value.published
+				}
+	        	var html = template(view); //Replace each empty field in html template with parsed RSS data
+	        	$('#article-list').append(html); //Inject finalized template into article list
+	    	});
+		}
+	});
 });
 
 </script>

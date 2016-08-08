@@ -17,7 +17,8 @@ res.status(200).sendFile('./articletemplate.html', { root: __dirname })
 
 app.post('/rss', function (req, res) { 
 	console.log(req.body);
-	rssfeed.getfeed('http://www.bitpipe.com/data/bpXchange?b=ka_bp_manageit&d=31&f=rss&u=rss', function(data){
+	var url = req.body.url;
+	rssfeed.getfeed(url, function(data){
 		res.status(200).json(data);
 	});
 });
