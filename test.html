@@ -83,9 +83,10 @@ $(feedarray).each(function(index, element){
 		data: body,
 	 	success: function(data) {
 	 		//console.log(data);
-	 		$('#topic-title').html(data[0].feed.name); //Change titlebar to name of RSS feed
+	 		//$('#topic-title').html(data[0].feed.name); //Change titlebar to name of RSS feed
 	    	$(data).each(function (index2, value) {
 	    		var meta = {
+	    			topic: value.feed.name,
 					title: value.title,
 					description: value.content,
 					link: value.link,
