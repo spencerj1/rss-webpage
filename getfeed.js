@@ -4,7 +4,7 @@ module.exports = {
 	getfeed: function (url, callback){
 		feed(url, function(err, articles) {
   			if (err) throw err;
-  			console.log(articles);
+  			//console.log(articles);
   			callback(articles);
 		});
     }
