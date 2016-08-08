@@ -77,6 +77,7 @@ $.ajax({
 // For each RSS feed, retreive RSS data from server in json format.
 $(feedarray).each(function(index, element){
 	var body = {url: element};
+	var feedcount = 0;
 	$.ajax({
 		url: '/rss',
 		type: 'POST',
@@ -98,7 +99,8 @@ $(feedarray).each(function(index, element){
 			displayArticles.sort(function(a,b){
 			  	return b.date - a.date;
 			});
-			if(index == feedarray.length - 1){
+			feedcount++;
+			if(feedcount == feedarray.length){
 				for(var i=0; i<30; i++){
 					var html = template(displayArticles[i]); //Replace each empty field in html template with parsed RSS data
 		        	$('#article-list').append(html); //Inject finalized template into article list
