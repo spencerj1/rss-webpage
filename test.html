@@ -94,6 +94,7 @@ $(feedarray).each(function(index, element){
 					title: value.title,
 					description: value.content,
 					link: value.link,
+					datestring: new Date(value.published).toLocaleString();
 					date: new Date(value.published)
 				}
 				displayArticles.push(meta); //Push to list of articles gathered from all feeds
