@@ -86,6 +86,7 @@ $(feedarray).each(function(index, element){
 	 		//$('#topic-title').html(data[0].feed.name); //Change titlebar to name of RSS feed
 	    	$(data).each(function (index2, value) {
 	    		var meta = {
+	    			feedlink: value.feed.link,
 	    			topic: value.feed.name,
 					title: value.title,
 					description: value.content,
@@ -97,7 +98,7 @@ $(feedarray).each(function(index, element){
 			displayArticles.sort(function(a,b){
 			  	return b.date - a.date;
 			});
-			if(index == feedarray.length){
+			if(index == feedarray.length - 1){
 				for(var i=0; i<30; i++){
 					var html = template(displayArticles[i]); //Replace each empty field in html template with parsed RSS data
 		        	$('#article-list').append(html); //Inject finalized template into article list
