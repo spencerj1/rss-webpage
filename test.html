@@ -100,6 +100,7 @@ $(feedarray).each(function(index, element){
 			  	return b.date - a.date;
 			});
 			feedcount++;
+			console.log(feedcount)
 			if(feedcount == feedarray.length){
 				for(var i=0; i<30; i++){
 					var html = template(displayArticles[i]); //Replace each empty field in html template with parsed RSS data
