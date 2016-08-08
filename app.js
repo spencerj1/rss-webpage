@@ -8,11 +8,11 @@ var port = process.env.PORT || 3000;
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get('/', function (req, res) { 
-res.status(200).sendFile('./test.html', { root: __dirname })
+res.status(200).sendFile('./html/home.html', { root: __dirname })
 });
 
 app.get('/articletemplate', function (req, res) { 
-res.status(200).sendFile('./articletemplate.html', { root: __dirname })
+res.status(200).sendFile('./html/articletemplate.html', { root: __dirname })
 });
 
 app.post('/rss', function (req, res) { 
