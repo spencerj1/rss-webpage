@@ -96,9 +96,11 @@ $(feedarray).each(function(index, element){
 					displayArticles.sort(function(a,b){
 				  		return new Date(b.date) - new Date(a.date);
 					});
+					for(var i=0; i<displayArticles.length(); i++){
+						var html = template(displayArticles[i]); //Replace each empty field in html template with parsed RSS data
+	        			$('#article-list').append(html); //Inject finalized template into article list
+					}
 				}
-	        	var html = template(view); //Replace each empty field in html template with parsed RSS data
-	        	$('#article-list').append(html); //Inject finalized template into article list
 	    	});
 		}
 	});
