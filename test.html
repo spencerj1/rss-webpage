@@ -55,11 +55,12 @@
 </script>
 <script>
 
-var feedarray = [
+var dataPacket = { rssfeeds:[
 	"http://searchstorage.techtarget.com/rss/News-and-trends-in-the-storage-industry.xml",
 	"http://searchnetworking.techtarget.com/rss/News-on-networking-mobility-and-voice.xml",
 	"http://searchsecurity.techtarget.com/rss/Security-Wire-Daily-News.xml"
-]
+	]
+}
 
 //Retrieve the html template to be used for each Article object
 var template;
@@ -76,7 +77,7 @@ $.ajax({
 $.ajax({
 	url: '/rss',
 	type: 'POST',
-	data: feedarray,
+	data: dataPacket,
  	success: function(data) {
  		//console.log(data);
  		$('#topic-title').html(data[0].feed.name); //Change titlebar to name of RSS feed
