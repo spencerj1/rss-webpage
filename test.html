@@ -37,7 +37,7 @@
 <div id="content-center" class="content-center">
 	<div><div>
 		<section class="homepage-section trending-topics-home" id="trending-topics">
-				<h2 id="topic-title">Trending Topics</h2>
+				<h2 id="topic-title">Most Recent Topics</h2>
 				<ul class="trending-topics-items tt-list-1" id="article-list">
 				<!--Inject Template Here-->
 				</ul>
@@ -61,9 +61,9 @@ var feedarray = [
 	"http://searchsecurity.techtarget.com/rss/Security-Wire-Daily-News.xml",
 ];
 
-var displayArticles = []; //Array of articles to be displayed in center list;
+var displayArticles = []; //Array of articles to be displayed in article-list html element;
 
-//Retrieve the html template to be used for each Article object
+//Retrieve the html template to be used for each Article element
 var template;
 $.ajax({
     url: '/articletemplate',
@@ -74,10 +74,12 @@ $.ajax({
         }               
 });  
 
+
+var feedcount = 0; //Used to keep track of how many feeds have been returned.
+var displaycount = 30; //Number of articles to display in html
 // For each RSS feed, retreive RSS data from server in json format.
 $(feedarray).each(function(index, element){
 	var body = {url: element};
-	var feedcount = 0;
 	$.ajax({
 		url: '/rss',
 		type: 'POST',
@@ -87,26 +89,31 @@ $(feedarray).each(function(index, element){
 	 		//$('#topic-title').html(data[0].feed.name); //Change titlebar to name of RSS feed
 	    	$(data).each(function (index2, value) {
 	    		var meta = {
-	    			feedlink: value.feed.link,
-	    			topic: value.feed.name,
+	    			feedlink: value.feed.link, 
+	    			topic: value.feed.name, 
 					title: value.title,
 					description: value.content,
 					link: value.link,
 					date: new Date(value.published)
 				}
-				displayArticles.push(meta);
+				displayArticles.push(meta); //Push to list of articles gathered from all feeds
 	    	});
-			displayArticles.sort(function(a,b){
-			  	return b.date - a.date;
-			});
+
+			//Increment the feed counter
 			feedcount++;
-			console.log(feedcount)
 			if(feedcount == feedarray.length){
-				for(var i=0; i<30; i++){
+			//Check to see if this is the last feed to be returned, if so sort the array by date
+				displayArticles.sort(function(a,b){
+				  	return b.date - a.date;
+				});
+				for(var i=0; i<displaycount; i++){
 					var html = template(displayArticles[i]); //Replace each empty field in html template with parsed RSS data
-		        	$('#article-list').append(html); //Inject finalized template into article list
+		        	$('#article-list').append(html); //Inject finalized template into article list html element
 				}
-		}
+			}
+		},
+		error: function(error){
+			console.log(error);
 		}
 	});
 });
