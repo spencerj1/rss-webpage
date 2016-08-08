@@ -98,7 +98,7 @@ $(feedarray).each(function(index, element){
 			  	return b.date - a.date;
 			});
 			if(index == feedarray.length - 1){
-				for(var i=0; i<10; i++){
+				for(var i=0; i<30; i++){
 					var html = template(displayArticles[i]); //Replace each empty field in html template with parsed RSS data
 		        	$('#article-list').append(html); //Inject finalized template into article list
 				}
