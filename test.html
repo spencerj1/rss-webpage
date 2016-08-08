@@ -94,7 +94,7 @@ $(feedarray).each(function(index, element){
 				displayArticles.push(meta);
 	    	});
 			displayArticles.sort(function(a,b){
-			  	return new Date(b.date) - new Date(a.date);
+			  	return b.date - a.date;
 			});
 			if(index == feedarray.length - 1){
 				for(var i=0; i<10; i++){
